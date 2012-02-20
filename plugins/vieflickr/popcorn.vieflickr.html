@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Popcorn BoxIt Plug-in Demo</title>
+  
+  <script src="../../popcorn.js"></script>
+  <script src="popcorn.vieflickr.js"></script>
+  <link rel="stylesheet" href="popcorn.boxit.css"" />
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      var p = Popcorn('#video')
+      .play()
+      .vieflickr({
+        start: 1,
+        end: 200,
+        typeof: 'person',
+        target: 'flickr',
+		about: 'http://dbpedia.org/resource/Barack_Obama'
+      } )
+    }, false);
+
+  </script>
+</head>
+<body>
+	<div>
+		<video poster="http://videos.mozilla.org/serv/webmademovies/popcornposter.png" controls="" autobuffer="" preload="auto" id="video" style="background:#000" tabindex="0">
+		  <source type="video/mp4" src="http://videos.mozilla.org/serv/webmademovies/wtfpopcorn.mp4"></source>
+		  <source type="video/webM" src="http://videos.mozilla.org/serv/webmademovies/wtfpopcorn.webm"></source>
+		  <source type="video/ogg" src="http://videos.mozilla.org/serv/webmademovies/wtfpopcorn.ogv"></source>
+		</video>
+	</div>
+	<div id="flickr"></div>
+</body>
+</html>

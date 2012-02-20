@@ -1,0 +1,145 @@
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <!-- Load popcorn.js and plugins you want to use -->
+  <script src="popcorn.js"></script>
+  <script src="plugins/flickr/popcorn.flickr.js"></script>
+  <script src="plugins/box/popcorn.boxit.js"></script>
+
+  <script src="modules/timeline-sources/popcorn.timeline-sources.js"></script>
+
+
+  <!-- Need an XML parser -->
+  <script src="parsers/parserXML/popcorn.parserXML.js"></script>
+  <link href="viestyle.css" rel="stylesheet" type="text/css" />
+ 
+
+  <title>Popcorn Video Demo WIP</title>
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var p = Popcorn('#video');
+	  p.parseXML("http://demos.polymedia.it/iks/popcornRestWs/rest/database/getvideoxmltag?videoid=");
+	  
+	  var states = function() {
+    
+		// store the readyState
+		var rdy = p.readyState();
+		
+		if ( rdy === 0 ) {
+			console.log( "No data at all, readyState is " + rdy );
+		} else if ( rdy === 1 ) {
+			console.log( "We have metadata, duration is " + p.duration() +
+						 ", readyState is " + rdy );
+		} else if ( rdy === 2 ) {
+			console.log( "can play current location in video, readyState is " + rdy );
+		} else if ( rdy === 3 ) {
+			console.log( "can play current location in video and a bit more, readyState is " + rdy );
+		}
+		if ( rdy === 4 ) {
+			console.log( "can play whole video at current buffer rate, readyState is " + rdy );
+			Popcorn.getScript("plugins/vieflickr/popcorn.vieflickr.js",
+			function() {
+				console.log("play!");
+				p.controls( true );
+				//p.play();
+				console.log( "LOADED" );
+			});
+		} else {
+			setTimeout( states, 10 );
+		}
+	}
+		
+	states();
+    }, false);
+  </script>
+  
+  <script type="text/javascript">
+    $(document).ready(function () {
+      //Show hide the contents
+      $(".collapse").click(function () {
+        $(this).next(".content").slideToggle("fast");
+      });
+      //Swap class names
+      $(".collapse").toggle(function () {
+        $(this).addClass("expand");
+      }, function () {
+        $(this).removeClass("expand");
+      });
+      $(".collapse").toggle(function () {
+        $("span", this).text('Expand');
+      }, function () {
+        $("span", this).text('Collapse');
+      });
+      $('section').hover(function() {
+          $(this).addClass('hover')
+      }, function() {
+          $(this).removeClass('hover')
+      })
+      setInterval(function() {
+        $('section.hover').each(function() {
+            if ($(this).attr('hoveron')) {
+                if ($('video')[0].currentTime-$(this).attr('hoveron')>1) {
+                    $(this).removeAttr('hoveron').removeClass('hover');
+                }
+            }
+        })
+      }, 500);
+
+      $('.clickhere').click(function(){
+        $('.popup').fadeIn();
+        $('.pop-overlay').fadeIn()
+      });
+
+      $('.pop-overlay').click(function(){
+        $('.pop-overlay').fadeOut();
+        $('.popup').fadeOut();
+      });
+
+      $('.close_btn').click(function(){
+        $('.pop-overlay').fadeOut();
+        $('.popup').fadeOut();
+      });
+
+    });
+  </script>
+  
+</head>
+<body>
+  <!-- Start Contents -->
+  <div id="contents">
+    <!-- Start Left Contents -->
+    <div class="left-content">
+      <!-- Start Video Div -->
+      <div id="videoContainer" class="video-div">
+        <!-- You have to have an id in the video tag for Popcorn to work -->
+        <video id="video" src="" style="width:480px;height:380px" controls></video>
+		
+      </div><!-- End Video Div -->
+    </div><!-- End Left Content -->
+
+    <!-- Start Right Content -->
+	
+	<div class="columna">
+	<section>
+		<h3><img src="images/logo_flickr.png" alt="Flickr Images" width="53" height="16" />
+		<span>&nbsp;</span></h3>
+		<a href="#" class="collapse"><span>Collapse</span></a>
+		<div id="flickr" class="content"><div class="overlay"></div><div class="inactive"></div></div>
+	  </section>
+	</div>
+    <div class="columnb">
+	<section>
+		<h3><img src="images/logo_vie.png" alt="Flickr Images" width="53" height="16" />
+		<span>&nbsp;</span></h3>
+		<a href="#" class="collapse"><span>Collapse</span></a>
+		<div id="vieflickr" class="content"><div class="overlay"></div><div class="inactive"></div></div>
+	</section>
+	</div>
+	<!-- End Right Content -->
+
+  </div><!-- End Contents -->
+  
+</body>
+</html>

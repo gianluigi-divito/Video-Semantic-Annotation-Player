@@ -1,0 +1,26 @@
+/*
+.boxit{
+	opacity:0.4;
+	filter:alpha(opacity=40);
+}
+*/
+
+#video {
+	position:absolute;
+	width:480px;
+	height:360px;
+	z-index:1;
+	left: 20px;
+	top: 20px;
+	float: left;
+}
+
+#flickr
+{
+	float: right;
+	width: 500px;
+	height: 400px;
+    margin-right: 200px;
+    border: 4px;
+    border-style: solid;
+}

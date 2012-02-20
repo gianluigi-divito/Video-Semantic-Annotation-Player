@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Popcorn BoxIt Plug-in Demo</title>
+  
+  <script src="http://code.jquery.com/jquery.js"></script>
+
+  <script src="../../popcorn.js"></script>
+  
+	<!--  the current VIE widget -->
+	<script type="text/javascript" src="index.js"></script>
+
+  
+  <link rel="stylesheet" href="popcorn.boxit.css"" />
+    
+  <!--
+  <script type="text/javascript">
+        $(function() {
+            // initialize a global VIE object
+            var myVIE = window.myVIE = new VIE();
+            myVIE.loadSchemaOrg();
+            
+            // read RDFa from the text below
+            myVIE.use(new myVIE.RdfaService);
+            myVIE.load({element: $('[about]')})
+            .from('rdfa').execute();
+			
+			$('#flickr')
+            .vieImageSearch({
+                vie    : myVIE,
+            	bin_size: 8,
+                services : {
+                    flickr : {
+                        api_key : "ffd6f2fc41249feeddd8e62a531dc83e",
+                    	use: true
+                    },
+                    gimage : {
+                        use: true
+                    }
+                }
+            });
+			
+			});
+	</script>		
+  -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      var p = Popcorn('#video')
+      .play()
+      .vieflickr({
+        start: 1,
+        end: 5,
+        typeof: 'Person',
+        target: 'flickr',
+		about: 'http://dbpedia.org/resource/Barack_Obama',
+		property: 'name',
+		text: 'Barack Obama'
+      } )
+	  .vieflickr({
+        start: 6,
+        end: 10,
+        typeof: 'Person',
+        target: 'flickr',
+		about: 'http://dbpedia.org/resource/Michelle_Obama',
+		property: 'name',
+		text: 'Michelle Obama'
+      } )
+    }, false);
+
+  </script>
+</head>
+<body>
+	<div>
+		<video controls="" autobuffer="" preload="auto" id="video" style="background:#000" tabindex="0">
+		  <source type="video/mp4" src="http://localhost/IKSdemo/barak.mp4"></source>
+		</video>
+	</div>
+	<div id="flickr"></div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Popcorn BoxIt Plug-in Demo</title>
+  
+  <script src="../../popcorn.js"></script>
+  <script src="popcorn.boxit.js"></script>
+  <link rel="stylesheet" href="popcorn.boxit.css"" />
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      var p = Popcorn('#video')
+      .play()
+      .boxit({
+        start: 1, // seconds
+        end: 5, // seconds
+        top: 100, // pixel
+        left: 230, // pixel
+		width: 120, // pixel
+		height: 120, // pixel
+		id: 'box1',
+        border: 'dotted',
+		type: 'circle'
+      } )
+      .boxit({
+        start: 5, // seconds
+        end: 21, // seconds
+        top: 25, // pixel
+        left: 115, // pixel
+		width: 85, // pixel
+		height: 75, // pixel
+		id: 'box2',
+        border: 'dotted'
+      } )
+		.boxit({
+        start: 5, // seconds
+        end: 17, // seconds
+        top: 170, // pixel
+        left: 285, // pixel
+		width: 50, // pixel
+		height: 70, // pixel
+		id: 'box3',
+        border: 'dotted'
+      } )
+	  .boxit({
+        start: 24, // seconds
+        end: 54, // seconds
+        top: 35, // pixel
+        left: 115, // pixel
+		width: 85, // pixel
+		height: 75, // pixel
+		id: 'box4',
+        border: 'dotted'
+      } )
+	  .boxit({
+        start: 24, // seconds
+        end: 54, // seconds
+        top: 95, // pixel
+        left: 246, // pixel
+		width: 55, // pixel
+		height: 65, // pixel
+		id: 'box5',
+        border: 'dotted'
+      } )
+	  	.boxit({
+        start: 60, // seconds
+        end: 73, // seconds
+        top: 35, // pixel
+        left: 115, // pixel
+		width: 85, // pixel
+		height: 75, // pixel
+		id: 'box6',
+        border: 'dotted'
+      } )
+	  .boxit({
+        start: 60, // seconds
+        end: 73, // seconds
+        top: 95, // pixel
+        left: 236, // pixel
+		width: 55, // pixel
+		height: 65, // pixel
+		id: 'box6',
+        border: 'dotted'
+      } )
+    }, false);
+
+  </script>
+</head>
+<body>
+  <h1 id="qunit-header">Popcorn Box It Plug-in Demo</h1>
+  <p> At 01 seconds info will appear a box at coordinates x000 y000 on the video and disappear at 15 seconds.</p>
+  <p> At 10 seconds info will appear a box at coordinates x050 y050 on the video and disappear at 45 seconds.</p>
+  <div>
+    <video id='video'
+      controls height="360" width="480"
+      poster="../../test/poster.png">
+
+      <source id='mp4'
+        src="http://demos.txt.it/pv/socialtv/android/IKSdemo/barak.mp4"
+        type='video/mp4; codecs="avc1, mp4a"'>
+
+      <p>Your user agent does not support the HTML5 Video element.</p>
+    </video>
+  </div>
+  
+</body>
+</html>

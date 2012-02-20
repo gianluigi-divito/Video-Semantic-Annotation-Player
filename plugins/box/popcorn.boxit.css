@@ -1,0 +1,15 @@
+/*
+.boxit{
+	opacity:0.4;
+	filter:alpha(opacity=40);
+}
+*/
+
+#video {
+	position:absolute;
+	width:480px;
+	height:360px;
+	z-index:1;
+	left: 20px;
+	top: 200px;
+}
